@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Design System — Rob Swystun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Black & white core */
+    --page:        #FFFFFF;   /* pure white page */
+    --page-soft:   #FBF7EC;   /* warm off-white for alt sections */
+    --ink:         #111111;   /* near-black */
+    --ink-soft:    #3D3D3D;   /* secondary text */
+    --ink-mute:    #6B6B6B;   /* tertiary text, captions */
+    --rule:        #E4E4E1;   /* hairlines */
+    --rule-strong: #C8C8C4;   /* heavier dividers */
+
+    /* Primary accent — deep editorial blue */
+    --accent:      #1F3A68;
+    --accent-deep: #142545;
+    --accent-soft: #E8EEF7;
+
+    /* Warm secondary — used sparingly for warmth */
+    --warm:        #D4A93B;   /* muted ochre / soft mustard */
+    --warm-deep:   #A8841C;   /* darker variant for text on light */
+    --warm-soft:   #FBF1D2;   /* gentle highlight / underline tint */
+
+    /* Type */
+    --serif: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    /* Scale */
+    --t-12: 0.75rem;
+    --t-14: 0.875rem;
+    --t-16: 1rem;
+    --t-18: 1.125rem;
+    --t-20: 1.25rem;
+    --t-24: 1.5rem;
+    --t-30: 1.875rem;
+    --t-36: 2.25rem;
+    --t-48: 3rem;
+    --t-60: 3.75rem;
+    --t-80: 5rem;
+
+    /* Spacing (8pt grid) */
+    --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px;
+    --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+
+    --maxw: 1240px;
+    --gutter: 24px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background: var(--page);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: var(--t-16);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection{ background: var(--accent); color: #fff }
+
+  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+  section{ padding: var(--s-9) 0; border-top: 1px solid var(--rule); }
+  section:first-of-type{ border-top: 0 }
+
+  /* Section header */
+  .sec-head{ display:flex; align-items:baseline; gap: var(--s-5); margin-bottom: var(--s-7);}
+  .sec-num{ font-family: var(--mono); font-size: var(--t-14); color: var(--ink-mute);}
+  .sec-title{ font-family: var(--serif); font-weight: 400; font-size: var(--t-36); letter-spacing: -0.015em; margin: 0;}
+  .sec-eyebrow{ font-family: var(--sans); font-size: var(--t-14); font-weight: 500; color: var(--accent); margin-bottom: var(--s-3);}
+
+  /* === MASTHEAD === */
+  .masthead{ padding: var(--s-7) 0 var(--s-9); }
+  .masthead .meta{ display:flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--rule); padding-bottom: var(--s-3); margin-bottom: var(--s-7);}
+  .masthead .meta span{ font-family: var(--mono); font-size: var(--t-14); color: var(--ink-mute);}
+  .masthead h1{ font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 7vw, 80px); line-height: 1.02; letter-spacing: -0.025em; margin: 0 0 var(--s-5);}
+  .masthead h1 em{
+    font-style: italic; color: var(--ink); font-weight: 400;
+    background-image: linear-gradient(transparent 62%, var(--warm-soft) 62%, var(--warm-soft) 94%, transparent 94%);
+    padding: 0 2px;
+  }
+  .masthead p.dek{ font-family: var(--serif); font-weight: 400; font-size: var(--t-20); max-width: 64ch; color: var(--ink-soft); margin: 0; line-height: 1.5;}
+
+  /* === WORDMARK === */
+  .logo-grid{ display:grid; grid-template-columns: 1.2fr .8fr; gap: var(--s-5); align-items:stretch;}
+  .logo-card{ background: var(--page-soft); border: 1px solid var(--rule); padding: var(--s-8); display:flex; flex-direction:column; justify-content:center; align-items:center; min-height: 320px; position: relative; }
+  .logo-card.dark{ background: var(--ink); color: var(--page);}
+  .logo-card.dark .wordmark, .logo-card.dark .monogram{ color: var(--page)}
+  .logo-card .label{ position:absolute; top: var(--s-4); left: var(--s-4); font-family: var(--mono); font-size: var(--t-12); color: var(--ink-mute);}
+  .logo-card.dark .label{ color: #9a9a9a;}
+
+  .wordmark{ font-family: var(--serif); font-weight: 400; font-size: 52px; letter-spacing: -0.018em; line-height: 1;}
+  .wordmark .dot{ color: var(--accent); margin-left: 2px;}
+
+  .monogram{ font-family: var(--serif); font-weight: 400; font-size: 88px; line-height: 1; letter-spacing: -0.02em;}
+  .monogram .dot{ color: var(--accent);}
+
+  .lockup{ display:flex; flex-direction:column; gap: var(--s-2); align-items:center;}
+  .lockup .role{ font-family: var(--sans); font-size: var(--t-14); color: var(--ink-mute); margin-top: 10px;}
+  .logo-card.dark .lockup .role{ color: #9a9a9a }
+
+  .logo-notes ul{ list-style:none; padding:0; margin:0;}
+  .logo-notes li{ padding: var(--s-4) 0; border-bottom: 1px solid var(--rule); display:grid; grid-template-columns: 140px 1fr; gap: var(--s-4); align-items: baseline;}
+  .logo-notes li strong{ font-family: var(--sans); font-weight: 500; font-size: var(--t-14); color: var(--ink-mute);}
+  .logo-notes li span{ font-family: var(--serif); font-size: var(--t-18); color: var(--ink); line-height: 1.5;}
+
+  /* === COLOR === */
+  .swatch-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4);}
+  .swatch{ border: 1px solid var(--rule); background: var(--page); padding: var(--s-5); display:flex; flex-direction:column; gap: var(--s-3);}
+  .swatch .chip{ height: 140px; border: 1px solid rgba(0,0,0,.06);}
+  .swatch .name{ font-family: var(--serif); font-size: var(--t-20); margin:0; font-weight: 500;}
+  .swatch .hex{ font-family: var(--mono); font-size: var(--t-12); color: var(--ink-mute);}
+  .swatch .use{ font-size: var(--t-14); color: var(--ink-soft);}
+
+  /* === TYPOGRAPHY === */
+  .type-row{ display:grid; grid-template-columns: 220px 1fr; gap: var(--s-7); padding: var(--s-5) 0; border-bottom: 1px solid var(--rule); align-items: baseline;}
+  .type-row:last-child{ border-bottom: 0 }
+  .type-row .meta{ font-family: var(--mono); font-size: var(--t-12); color: var(--ink-mute); line-height: 1.6;}
+  .type-row .meta strong{ display:block; color: var(--ink); font-weight: 500; margin-bottom: 4px; font-size: var(--t-14); font-family: var(--sans);}
+  .type-sample{ color: var(--ink);}
+
+  .ts-display{ font-family: var(--serif); font-weight: 400; font-size: var(--t-60); line-height: 1.02; letter-spacing: -0.025em;}
+  .ts-h1{ font-family: var(--serif); font-weight: 400; font-size: var(--t-48); line-height: 1.05; letter-spacing: -0.02em;}
+  .ts-h2{ font-family: var(--serif); font-weight: 400; font-size: var(--t-36); line-height: 1.1; letter-spacing: -0.015em;}
+  .ts-h3{ font-family: var(--serif); font-weight: 500; font-size: var(--t-24); line-height: 1.25; letter-spacing: -0.005em;}
+  .ts-dek{ font-family: var(--serif); font-weight: 400; font-size: var(--t-20); line-height: 1.5; color: var(--ink-soft);}
+  .ts-body{ font-family: var(--sans); font-size: var(--t-18); line-height: 1.6; color: var(--ink);}
+  .ts-small{ font-family: var(--sans); font-size: var(--t-14); line-height: 1.55; color: var(--ink-soft);}
+  .ts-eyebrow{ font-family: var(--sans); font-size: var(--t-14); font-weight: 500; color: var(--accent); letter-spacing: 0;}
+  .ts-quote{ font-family: var(--serif); font-weight: 400; font-size: var(--t-30); line-height: 1.3; letter-spacing: -0.01em; font-style: italic;}
+  .ts-caption{ font-family: var(--sans); font-size: var(--t-14); color: var(--ink-mute);}
+
+  /* === SPACING === */
+  .space-grid{ display:grid; grid-template-columns: repeat(5,1fr); gap: var(--s-4);}
+  .space-cell{ border: 1px solid var(--rule); background: var(--page-soft); padding: var(--s-4); display:flex; flex-direction: column; gap: var(--s-3);}
+  .space-bar{ background: var(--accent); height: 8px;}
+  .space-cell .lbl{ font-family: var(--mono); font-size: var(--t-12); color: var(--ink-mute);}
+
+  /* === COMPONENTS === */
+  .comp-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: var(--s-5);}
+  .comp{ border: 1px solid var(--rule); background: var(--page-soft); padding: var(--s-6); display:flex; flex-direction:column; gap: var(--s-5); position: relative;}
+  .comp .ctitle{ position:absolute; top: var(--s-3); right: var(--s-4); font-family: var(--mono); font-size: var(--t-12); color: var(--ink-mute);}
+
+  /* Buttons — no uppercase */
+  .btn{
+    display:inline-flex; align-items:center; gap: 10px;
+    font-family: var(--sans); font-weight: 500; font-size: var(--t-14);
+    letter-spacing: 0;
+    padding: 14px 22px; border: 1px solid var(--ink); background: var(--ink); color: var(--page);
+    text-decoration: none; cursor: pointer; transition: all .25s ease;
+  }
+  .btn:hover{ background: var(--accent); border-color: var(--accent);}
+  .btn .arrow{ display:inline-block; transition: transform .25s ease;}
+  .btn:hover .arrow{ transform: translateX(4px);}
+  .btn.ghost{ background: transparent; color: var(--ink);}
+  .btn.ghost:hover{ background: var(--ink); color: var(--page); border-color: var(--ink);}
+  .btn.link{
+    background: transparent; border: 0; padding: 0; color: var(--ink);
+    font-family: var(--serif); font-style: italic; font-size: var(--t-18);
+    border-bottom: 1px solid var(--ink); padding-bottom: 4px; border-radius: 0;
+  }
+  .btn.link:hover{ color: var(--accent); border-color: var(--accent); background: transparent;}
+
+  /* Card */
+  .editorial-card{ background: var(--page); border: 1px solid var(--rule); padding: var(--s-6); display:flex; flex-direction:column; gap: var(--s-3);}
+  .editorial-card .ec-num{ font-family: var(--mono); font-size: var(--t-14); color: var(--accent);}
+  .editorial-card h4{ font-family: var(--serif); font-weight: 500; font-size: var(--t-24); margin: 0; letter-spacing: -0.01em;}
+  .editorial-card p{ margin:0; color: var(--ink-soft); font-size: var(--t-16); line-height: 1.55;}
+
+  /* Pull quote */
+  .pull-quote{ border-left: 2px solid var(--accent); padding-left: var(--s-5); margin: 0;}
+  .pull-quote p{ font-family: var(--serif); font-style: italic; font-size: var(--t-24); line-height: 1.35; margin: 0 0 var(--s-3); color: var(--ink);}
+  .pull-quote cite{ font-family: var(--sans); font-style: normal; font-size: var(--t-14); color: var(--ink-mute);}
+
+  /* Stat */
+  .stat{ display:flex; flex-direction:column; gap: 4px;}
+  .stat .num{ font-family: var(--serif); font-weight: 400; font-size: var(--t-60); line-height: 0.95; letter-spacing: -0.025em;}
+  .stat .num .plus{ color: var(--accent);}
+  .stat .lbl{ font-family: var(--sans); font-size: var(--t-14); color: var(--ink-mute);}
+
+  /* Tag — sentence case */
+  .tag{ display:inline-block; font-family: var(--sans); font-size: var(--t-12); font-weight: 500; padding: 5px 11px; border: 1px solid var(--rule-strong); color: var(--ink-soft); border-radius: 999px;}
+
+  /* Rule */
+  .rule-thin{ height:1px; background: var(--rule); border:0;}
+  .rule-thick{ height: 2px; background: var(--ink); border: 0; width: 64px;}
+
+  /* === GRID DEMO === */
+  .grid-demo{ display:grid; grid-template-columns: repeat(12, 1fr); gap: var(--s-3); margin-top: var(--s-5);}
+  .grid-demo .col{ background: var(--accent-soft); border-top: 2px solid var(--accent); height: 56px; display:flex; align-items: center; justify-content:center; font-family: var(--mono); font-size: 11px; color: var(--accent-deep);}
+
+  /* === FOOTER === */
+  footer{ padding: var(--s-7) 0; border-top: 1px solid var(--rule); margin-top: var(--s-9);}
+  footer .row{ display:flex; justify-content: space-between; align-items:baseline; font-family: var(--mono); font-size: var(--t-12); color: var(--ink-mute);}
+
+  /* Responsive */
+  @media (max-width: 860px){
+    .logo-grid, .comp-grid{ grid-template-columns: 1fr;}
+    .swatch-grid{ grid-template-columns: repeat(2, 1fr);}
+    .space-grid{ grid-template-columns: repeat(2, 1fr);}
+    .type-row{ grid-template-columns: 1fr; gap: var(--s-3);}
+    .logo-notes li{ grid-template-columns: 1fr;}
+    .ts-display{ font-size: var(--t-48);}
+    .ts-h1{ font-size: var(--t-36);}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="meta">
+      <span>Brand · Design system</span>
+      <span>v 0.3 · May 2026</span>
+    </div>
+    <h1>A clear, quiet system for <em>Rob Swystun</em>’s next chapter.</h1>
+    <p class="dek">Black and white at the core, one accent used sparingly, plain readable type. Built so the writing carries the page — not the design.</p>
+  </header>
+
+  <!-- 01 — WORDMARK -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">Wordmark and monogram</h2>
+    </div>
+    <p class="ts-dek" style="max-width: 64ch; margin: 0 0 var(--s-7);">No icon. The name is the mark. A single blue period punctuates it — a writer’s full stop.</p>
+
+    <div class="logo-grid">
+      <div class="logo-card">
+        <span class="label">Primary wordmark · light</span>
+        <div class="lockup">
+          <div class="wordmark">Rob&nbsp;Swystun<span class="dot">.</span></div>
+          <div class="role">Writer &amp; ghostwriter</div>
+        </div>
+      </div>
+      <div class="logo-card dark">
+        <span class="label">Monogram · dark</span>
+        <div class="lockup">
+          <div class="monogram">rs<span class="dot">.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-notes" style="margin-top: var(--s-7);">
+      <ul>
+        <li><strong>Concept</strong><span>The work is the mark. A simple wordmark set in Source Serif 4, with one blue period as a small signal of voice and craft.</span></li>
+        <li><strong>Construction</strong><span>Source Serif 4, weight 400, letter-spacing −0.018em. The period is the single use of accent color in the lockup.</span></li>
+        <li><strong>Minimum size</strong><span>Wordmark: 16 px on screen, 12 mm in print. Monogram: 24 px / 16 mm.</span></li>
+        <li><strong>Clear space</strong><span>Equal to the cap height of “R” on all sides. Never crowded by other elements.</span></li>
+        <li><strong>Don’ts</strong><span>Don’t recolor the period to anything but the accent or pure ink. Don’t set the wordmark in italic, all caps, or any non-serif typeface. Don’t add a tagline lock-up directly under the wordmark.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 02 — COLOR -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Color</h2>
+    </div>
+    <p class="ts-dek" style="max-width: 64ch; margin: 0 0 var(--s-7);">Black and white carry the site. One blue is the primary accent. A muted ochre adds quiet warmth — used only as a soft highlight or in a single small detail per view.</p>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="chip" style="background: var(--page); border-color: var(--rule);"></div>
+        <p class="name">Page</p>
+        <span class="hex">#FFFFFF</span>
+        <span class="use">The primary surface. Pure white, no tint.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--page-soft)"></div>
+        <p class="name">Page · warm</p>
+        <span class="hex">#FBF7EC</span>
+        <span class="use">Warm off-white. Used to mark alternate sections — a touch of paper warmth without leaving the white family.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--ink)"></div>
+        <p class="name">Ink</p>
+        <span class="hex">#111111</span>
+        <span class="use">Headlines, body copy, primary buttons. Near-black, never pure.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--ink-soft)"></div>
+        <p class="name">Ink · soft</p>
+        <span class="hex">#3D3D3D</span>
+        <span class="use">Body paragraphs over white where slightly softer is wanted.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--ink-mute)"></div>
+        <p class="name">Ink · mute</p>
+        <span class="hex">#6B6B6B</span>
+        <span class="use">Captions, metadata, secondary navigation.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--rule)"></div>
+        <p class="name">Rule</p>
+        <span class="hex">#E4E4E1</span>
+        <span class="use">All hairlines, dividers, and 1px borders.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--accent)"></div>
+        <p class="name">Accent</p>
+        <span class="hex">#1F3A68</span>
+        <span class="use">The only color. Used for the wordmark period, primary CTAs on hover, and small editorial signals.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--accent-deep)"></div>
+        <p class="name">Accent · deep</p>
+        <span class="hex">#142545</span>
+        <span class="use">Hover and pressed states for the accent.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--warm-soft)"></div>
+        <p class="name">Warm · soft</p>
+        <span class="hex">#FBF1D2</span>
+        <span class="use">Highlighter tint. The signature use: a soft underline behind one italic word per page.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--warm)"></div>
+        <p class="name">Warm</p>
+        <span class="hex">#D4A93B</span>
+        <span class="use">Muted ochre. Reserved for tiny editorial details — a marker tick, a numeric flourish.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--warm-deep)"></div>
+        <p class="name">Warm · deep</p>
+        <span class="hex">#A8841C</span>
+        <span class="use">Darker variant where the ochre needs to sit on white as text. Used very rarely.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — TYPOGRAPHY -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Typography</h2>
+    </div>
+    <p class="ts-dek" style="max-width: 64ch; margin: 0 0 var(--s-7);">Two families. Source Serif 4 for everything that carries meaning. Inter for UI and supporting copy. No display ligatures, no swashes, no all caps anywhere.</p>
+
+    <div class="type-row">
+      <div class="meta"><strong>Display · Source Serif 4</strong>60 px · weight 400<br/>letter-spacing −0.025em<br/>line-height 1.02</div>
+      <div class="type-sample ts-display">The story you haven’t told yet.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>H1 · Source Serif 4</strong>48 px · weight 400</div>
+      <div class="type-sample ts-h1">Twenty years. Ninety companies. One voice — yours.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>H2 · Source Serif 4</strong>36 px · weight 400</div>
+      <div class="type-sample ts-h2">A working partnership, one project at a time.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>H3 · Source Serif 4</strong>24 px · weight 500</div>
+      <div class="type-sample ts-h3">Easy working style</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>Dek · Source Serif 4</strong>20 px · weight 400</div>
+      <div class="type-sample ts-dek">A subhead under display type. Sets the page’s second voice without competing for attention.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>Body · Inter</strong>18 / 16 px · weight 400<br/>line-height 1.6</div>
+      <div class="type-sample ts-body">Inter handles every long-form paragraph, every form field, every menu. It is the quiet voice that lets the serif do the talking. Only weights 400 and 500 are used in body contexts.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>Eyebrow · Inter</strong>14 px · weight 500<br/>color Accent</div>
+      <div class="type-sample ts-eyebrow">A section label, in sentence case.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>Pull quote · Source Serif 4 italic</strong>30 px · weight 400</div>
+      <div class="type-sample ts-quote">Rob delivered everything from a solid content strategy to long-form web copy to catchy taglines and ad copy.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>Caption · Inter</strong>14 px · weight 400<br/>color Ink mute</div>
+      <div class="type-sample ts-caption">— Robert Laplante, founder and CEO, Workshop Built Inc.</div>
+    </div>
+  </section>
+
+  <!-- 04 — SPACING -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Spacing and grid</h2>
+    </div>
+    <p class="ts-dek" style="max-width: 64ch; margin: 0 0 var(--s-7);">An 8-point base. Sections breathe. White space is treated as content.</p>
+
+    <div class="space-grid">
+      <div class="space-cell"><div class="space-bar" style="width:4px"></div><span class="lbl">04 · 4px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:8px"></div><span class="lbl">08 · 8px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:16px"></div><span class="lbl">16 · 16px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:24px"></div><span class="lbl">24 · 24px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:32px"></div><span class="lbl">32 · 32px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:48px"></div><span class="lbl">48 · 48px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:64px"></div><span class="lbl">64 · 64px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:96px"></div><span class="lbl">96 · 96px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:128px"></div><span class="lbl">128 · 128px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:160px"></div><span class="lbl">160 · 160px</span></div>
+    </div>
+
+    <div style="margin-top: var(--s-7);">
+      <div class="ts-eyebrow">12-column grid · 1240px max · 24px gutter</div>
+      <div class="grid-demo">
+        <div class="col">1</div><div class="col">2</div><div class="col">3</div><div class="col">4</div>
+        <div class="col">5</div><div class="col">6</div><div class="col">7</div><div class="col">8</div>
+        <div class="col">9</div><div class="col">10</div><div class="col">11</div><div class="col">12</div>
+      </div>
+      <p class="ts-small" style="margin-top: var(--s-4); max-width: 64ch;">Hero and feature copy occupy 8 of 12. Body prose holds to 6–7 columns for a 65-character measure. Asymmetric two-column layouts (5/7 or 4/8) replace centered slabs.</p>
+    </div>
+  </section>
+
+  <!-- 05 — COMPONENTS -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Components</h2>
+    </div>
+
+    <div class="comp-grid">
+
+      <div class="comp">
+        <span class="ctitle">Buttons</span>
+        <div style="display:flex; flex-wrap:wrap; gap: var(--s-4); align-items:center;">
+          <a class="btn" href="#">Start a conversation <span class="arrow">→</span></a>
+          <a class="btn ghost" href="#">View portfolio <span class="arrow">→</span></a>
+          <a class="btn link" href="#">Read the essay →</a>
+        </div>
+        <p class="ts-small">Primary: ink fill, accent on hover. Ghost: outlined. Link: serif italic with a hairline — used inline in body copy.</p>
+      </div>
+
+      <div class="comp">
+        <span class="ctitle">Editorial card</span>
+        <div class="editorial-card">
+          <span class="ec-num">02 · Method</span>
+          <h4>White glove treatment</h4>
+          <p>While other ghostwriters handle multiple clients at the same time, I prefer to work with one client at a time.</p>
+        </div>
+      </div>
+
+      <div class="comp">
+        <span class="ctitle">Pull quote</span>
+        <blockquote class="pull-quote">
+          <p>A human-oriented writer who can massively improve your SEO content as well.</p>
+          <cite>— Diego Gopen, Reality XD</cite>
+        </blockquote>
+      </div>
+
+      <div class="comp">
+        <span class="ctitle">Stats</span>
+        <div style="display:flex; gap: var(--s-7); flex-wrap: wrap;">
+          <div class="stat"><span class="num">20</span><span class="lbl">Years writing</span></div>
+          <div class="stat"><span class="num">90<span class="plus">+</span></span><span class="lbl">Companies</span></div>
+          <div class="stat"><span class="num">120</span><span class="lbl">Articles ghostwritten</span></div>
+        </div>
+      </div>
+
+      <div class="comp">
+        <span class="ctitle">Tags</span>
+        <div style="display:flex; gap: var(--s-2); flex-wrap:wrap;">
+          <span class="tag">Ghostwriting</span>
+          <span class="tag">B2B content</span>
+          <span class="tag">Thought leadership</span>
+          <span class="tag">White papers</span>
+          <span class="tag">Long-form</span>
+        </div>
+      </div>
+
+      <div class="comp">
+        <span class="ctitle">Rules and dividers</span>
+        <hr class="rule-thick" />
+        <hr class="rule-thin" />
+        <div style="display:flex; align-items:center; gap: var(--s-3); color: var(--ink-mute);">
+          <hr class="rule-thin" style="flex:1;" />
+          <span style="display:inline-block; width:6px; height:6px; background: var(--warm); border-radius: 50%;"></span>
+          <span style="font-family: var(--sans); font-size: var(--t-14);">Section break</span>
+          <span style="display:inline-block; width:6px; height:6px; background: var(--warm); border-radius: 50%;"></span>
+          <hr class="rule-thin" style="flex:1;" />
+        </div>
+      </div>
+
+      <div class="comp">
+        <span class="ctitle">Highlight</span>
+        <p class="ts-body" style="margin:0; max-width: 48ch;">A subtle <span style="background-image: linear-gradient(transparent 62%, var(--warm-soft) 62%, var(--warm-soft) 94%, transparent 94%); padding: 0 2px;">marker highlight</span> can sit behind a single italic phrase or a key noun in a headline — never more than once per view.</p>
+        <p class="ts-small" style="margin:0;">Used in the masthead behind the name. Avoid in body paragraphs.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 06 — PRINCIPLES -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title">Principles</h2>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-7);">
+      <div>
+        <div class="ts-eyebrow">From Pixel Perfect Precision · The core</div>
+        <h3 class="ts-h3" style="margin: var(--s-3) 0;">Restraint over decoration.</h3>
+        <p class="ts-body" style="color: var(--ink-soft); max-width: 56ch;">Every gradient, glow, icon set, and rounded glass panel was left on the cutting room floor. The site reads like a well-set page: ample margins, one accent, and type doing the work that animation usually pretends to do.</p>
+      </div>
+      <div>
+        <div class="ts-eyebrow">From Pixel Perfect Precision · Techniques</div>
+        <h3 class="ts-h3" style="margin: var(--s-3) 0;">Edges that hold their lines.</h3>
+        <p class="ts-body" style="color: var(--ink-soft); max-width: 56ch;">Everything sits on a 4-point baseline. Hairlines are 1px on the rule color — never on pure black. Type uses optical-size axes so display copy stays crisp and body stays readable.</p>
+      </div>
+      <div>
+        <div class="ts-eyebrow">From Pixel Perfect Precision · Accessibility</div>
+        <h3 class="ts-h3" style="margin: var(--s-3) 0;">Real contrast, real reading.</h3>
+        <p class="ts-body" style="color: var(--ink-soft); max-width: 56ch;">Ink on white clears AAA at body sizes. Accent on white clears AA Large. Focus states use a 2px Ink ring — not a generic blue browser default.</p>
+      </div>
+      <div>
+        <div class="ts-eyebrow">From Pixel Perfect Precision · Worst case</div>
+        <h3 class="ts-h3" style="margin: var(--s-3) 0;">Built for real copy.</h3>
+        <p class="ts-body" style="color: var(--ink-soft); max-width: 56ch;">Headlines tested at twice their length. Testimonials tested with three-line names. Cards tested with both short and long descriptions. Nothing is sized for the demo.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="row">
+      <span>Rob Swystun · Design system</span>
+      <span>End of document</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

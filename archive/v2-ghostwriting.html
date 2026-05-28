@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ghostwriting — Rob Swystun</title>
+  <meta name="description" content="Book ghostwriting from a Winnipeg-based writer with 13+ years of ghostwriting experience. Business books, memoir, fiction, thought-leadership." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Suited-for: numbered list, prose, no cards */
+    .suited {
+      border-top: var(--rule-strong);
+      margin-top: var(--s-2);
+    }
+    .suited__entry {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 28px;
+      padding: 26px 0;
+      border-bottom: var(--rule);
+      align-items: baseline;
+    }
+    .suited__num {
+      font-family: var(--font-text);
+      font-style: italic;
+      font-size: 32px;
+      color: var(--oxblood);
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+    .suited__title {
+      font-family: var(--font-text);
+      font-size: 28px;
+      line-height: 1.1;
+      color: var(--ink);
+      letter-spacing: -0.008em;
+      margin-bottom: 8px;
+    }
+    .suited__title em { color: var(--oxblood); font-style: italic; }
+    .suited__body {
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 62ch;
+    }
+    @media (max-width: 720px) {
+      .suited__entry { grid-template-columns: 40px 1fr; gap: 16px; }
+    }
+
+    /* Process: three numbered phases with deliverables sublist */
+    .phase {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 28px;
+      padding: 32px 0;
+      border-bottom: var(--rule);
+      align-items: baseline;
+    }
+    .phase:first-of-type { border-top: var(--rule-strong); }
+    .phase__num {
+      font-family: var(--font-meta);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--oxblood);
+      text-transform: uppercase;
+      padding-top: 8px;
+    }
+    .phase__title {
+      font-family: var(--font-text);
+      font-size: 36px;
+      line-height: 1.0;
+      color: var(--ink);
+      letter-spacing: -0.012em;
+      margin-bottom: 14px;
+    }
+    .phase__title em { color: var(--oxblood); font-style: italic; }
+    .phase__body {
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 64ch;
+      margin-bottom: 18px;
+    }
+    .phase__delivers {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .phase__delivers-label {
+      font-family: var(--font-meta);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      margin-bottom: 6px;
+    }
+    .phase__delivers li {
+      font-family: var(--font-text);
+      font-size: 16.5px;
+      color: var(--ink);
+      padding: 7px 0;
+      border-top: var(--rule);
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: 12px;
+    }
+    .phase__delivers li::before {
+      content: counter(deliver, lower-roman) ".";
+      font-family: var(--font-text);
+      font-style: italic;
+      color: var(--oxblood);
+      counter-increment: deliver;
+    }
+    .phase__delivers { counter-reset: deliver; }
+    @media (max-width: 720px) {
+      .phase { grid-template-columns: 1fr; gap: 6px; }
+      .phase__num { padding-top: 0; }
+    }
+
+    /* Scope: side-by-side prose columns, no fills */
+    .scope {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      margin-top: var(--s-2);
+    }
+    @media (max-width: 800px) { .scope { grid-template-columns: 1fr; gap: 28px; } }
+    .scope__col h3 {
+      font-family: var(--font-text);
+      font-size: 30px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .scope__col h3 em { color: var(--oxblood); font-style: italic; }
+    .scope__col .plate { margin-bottom: 20px; }
+    .scope__col ul {
+      border-top: var(--rule-strong);
+    }
+    .scope__col li {
+      font-family: var(--font-text);
+      font-size: 17px;
+      line-height: 1.4;
+      color: var(--ink);
+      padding: 14px 0 14px 36px;
+      border-bottom: var(--rule);
+      position: relative;
+    }
+    .scope__col li::before {
+      position: absolute;
+      left: 0;
+      top: 14px;
+      font-family: var(--font-text);
+      font-style: italic;
+    }
+    .scope__col--in li::before  { content: "✓"; color: var(--forest); font-style: normal; }
+    .scope__col--out li::before { content: "✗"; color: var(--oxblood); font-style: normal; }
+  </style>
+</head>
+<body data-screen-label="03 Ghostwriting">
+  <a class="skip" href="#main">Skip to text</a>
+
+  <header class="colophon-top">
+    <div class="colophon-top__inner">
+      <a href="index.html" class="colophon-top__brand">
+        Rob Swystun <em>&amp;</em> Co. <span style="color:var(--ink-faded); font-family: var(--font-meta); font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; margin-left: 14px;">Content · Ghostwriting</span>
+      </a>
+      <nav class="colophon-top__nav" aria-label="Primary">
+        <a href="index.html"><span class="num">I</span>Home</a>
+        <a aria-current="page" href="ghostwriting.html"><span class="num">II</span>Ghostwriting</a>
+        <a href="about.html"><span class="num">III</span>About</a>
+        <a href="index.html#correspondence"><span class="num">IV</span>Write</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ═══════ PLATE I — TITLE + RESERVATION SLIP ════════════ -->
+    <section class="plate-section plate-section--lead" data-screen-label="GW title">
+      <div class="book">
+        <p class="plate plate-rule">
+          <span class="plate-num">Plate Ⅰ</span>
+          <span><a href="index.html" class="lnk" style="border:0;">Home</a> <span style="color:var(--ink-faded);">/</span> Services <span style="color:var(--ink-faded);">/</span> Ghostwriting</span>
+        </p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+
+        <aside class="marginalia">
+          <span class="num">A note before you read</span>
+          The reservation card on the right is a faithful preview.
+          In production the &ldquo;open the calendar&rdquo; link launches the
+          existing /book-online calendar in a modal — no third-party redirect.
+        </aside>
+
+        <h1 class="h-display">
+          You have the<br />
+          book. <em>I will</em><br />
+          write it.
+        </h1>
+
+        <p class="lede gap-2" style="max-width: 44ch;">
+          Thirteen years of ghostwriting business books, memoir, fiction, and
+          long-form thought-leadership for people who have something to say —
+          and zero spare months to write it. The byline is yours.
+          So is the voice. So is the credit.
+        </p>
+      </div>
+
+      <!-- Reservation slip in marginalia + text columns -->
+      <div class="book" style="margin-top: var(--s-3);">
+        <div class="wide">
+          <dl class="slip">
+            <p class="slip__title">A paid <em>discovery consult.</em><br />Sixty minutes.</p>
+            <div class="slip__row"><dt>Form</dt><dd>Zoom or telephone, at your preference</dd></div>
+            <div class="slip__row"><dt>Duration</dt><dd><em>Sixty minutes</em>, allowed to run over</dd></div>
+            <div class="slip__row"><dt>Fee</dt><dd>Paid up front <span class="refmark">※</span> credited to the project if we proceed</dd></div>
+            <div class="slip__row"><dt>Outcome</dt><dd>An honest fit assessment, scope, and timing — not a sales call</dd></div>
+            <div class="slip__row"><dt>Next slot</dt><dd><em>This week</em></dd></div>
+            <a class="lnk lnk--block slip__cta" href="#booking">Open the calendar →</a>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ PLATE II — SUITED FOR ═════════════════════════ -->
+    <section class="plate-section" data-screen-final="Suited for" data-screen-label="Suited for">
+      <div class="book">
+        <p class="plate plate-rule"><span class="plate-num">Plate Ⅱ</span><span>Four kinds of book project</span></p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+        <h2 class="h-h">Different formats. <em>Same craft.</em></h2>
+        <p class="lede gap-1" style="max-width: 58ch;">
+          If your project doesn't fit cleanly into one of these — write to me anyway.
+          Most don't fit cleanly the first time.
+        </p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+        <ol class="suited">
+          <li class="suited__entry">
+            <span class="suited__num">i.</span>
+            <div>
+              <h3 class="suited__title">The <em>business</em> book.</h3>
+              <p class="suited__body">
+                For executives and founders ready to put a methodology, philosophy,
+                or playbook between covers. The work is half thought-leadership
+                articulation, half storytelling — and we do both in the discovery phase.
+              </p>
+            </div>
+          </li>
+          <li class="suited__entry">
+            <span class="suited__num">ii.</span>
+            <div>
+              <h3 class="suited__title">The <em>memoir</em>.</h3>
+              <p class="suited__body">
+                For people with a life or career worth recording — written in your
+                cadence, not memoir-template prose. The thing nobody warns you about
+                is that the structure is harder than the writing. We get that part right first.
+              </p>
+            </div>
+          </li>
+          <li class="suited__entry">
+            <span class="suited__num">iii.</span>
+            <div>
+              <h3 class="suited__title">Long-form <em>thought-leadership</em>.</h3>
+              <p class="suited__body">
+                Op-eds, serialized books, deeply-reported articles that establish a point
+                of view in your field. Often the precursor to a full book contract — and
+                sometimes the better stand-alone result.
+              </p>
+            </div>
+          </li>
+          <li class="suited__entry">
+            <span class="suited__num">iv.</span>
+            <div>
+              <h3 class="suited__title">Selective <em>fiction</em>.</h3>
+              <p class="suited__body">
+                Literary and genre fiction, novel-length, ghostwritten or co-written.
+                Two slots per year, by application — fiction is a different muscle and
+                I won't take it on unless I have the time to do it well.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══════ PLATE III — PROCESS ═══════════════════════════ -->
+    <section class="plate-section plate-section--alt" data-screen-label="Process">
+      <div class="book">
+        <p class="plate plate-rule"><span class="plate-num">Plate Ⅲ</span><span>The process <span class="refmark">※</span> three phases</span></p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+
+        <aside class="marginalia">
+          <span class="num">Total duration</span>
+          Most full-length books run between eight and fourteen months from
+          kickoff to a submission-ready manuscript. Pacing is set by your
+          interview availability.
+        </aside>
+
+        <h2 class="h-h">From the first call to a <em>finished manuscript</em>.</h2>
+        <p class="lede gap-1" style="max-width: 60ch;">
+          Every project moves through three phases. Each has a clear deliverable
+          and a clear sign-off — so you always know where the book is and where
+          it is going next.
+        </p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+        <ol>
+          <li class="phase">
+            <span class="phase__num">Phase one<br />Discovery</span>
+            <div>
+              <h3 class="phase__title">Listen, <em>then</em> outline.</h3>
+              <p class="phase__body">
+                We start with a paid sixty-minute consult, then a series of recorded
+                interviews that capture your thinking, your voice, and the structure
+                of the book. I write the outline — you sign off before any chapter
+                is drafted.
+              </p>
+              <ul class="phase__delivers">
+                <span class="phase__delivers-label">You receive</span>
+                <li>Voice &amp; audience brief</li>
+                <li>Annotated outline of the full book</li>
+                <li>One sample chapter, drafted to the brief</li>
+              </ul>
+            </div>
+          </li>
+          <li class="phase">
+            <span class="phase__num">Phase two<br />Drafting</span>
+            <div>
+              <h3 class="phase__title">Draft, in <em>your</em> voice.</h3>
+              <p class="phase__body">
+                I draft chapters one at a time, with a regular interview cadence
+                to feed each new section. You read as we go, flag anything that
+                doesn't sound like you, and we adjust before we move on. No
+                surprises at the end.
+              </p>
+              <ul class="phase__delivers">
+                <span class="phase__delivers-label">You receive</span>
+                <li>Chapter drafts on a set cadence</li>
+                <li>Voice-check review notes after each pass</li>
+                <li>Two revision rounds, built in to the timeline</li>
+              </ul>
+            </div>
+          </li>
+          <li class="phase">
+            <span class="phase__num">Phase three<br />Finishing</span>
+            <div>
+              <h3 class="phase__title">Polish, then <em>hand it over</em>.</h3>
+              <p class="phase__body">
+                Full manuscript pass, structural edit, line edit, and proofread.
+                You receive a final manuscript ready for your editor, agent, or
+                self-publishing pipeline. I disappear from the acknowledgments page
+                if you want me to.
+              </p>
+              <ul class="phase__delivers">
+                <span class="phase__delivers-label">You receive</span>
+                <li>Final manuscript, DOCX and PDF</li>
+                <li>Front-matter draft and back-matter notes</li>
+                <li>Submission-ready files for editor or agent</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══════ PLATE IV — SCOPE ══════════════════════════════ -->
+    <section class="plate-section" data-screen-label="Scope">
+      <div class="book">
+        <p class="plate plate-rule"><span class="plate-num">Plate Ⅳ</span><span>Statement of scope</span></p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+        <h2 class="h-h">What is <em>in</em>, and what is <em>not</em>.</h2>
+        <p class="lede gap-1" style="max-width: 60ch;">
+          Ghostwriting engagements are not all-purpose author services.
+          Here is what every project includes, and what it does not — so the
+          scope is clear before either of us signs anything.
+        </p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+        <div class="wide">
+          <div class="scope">
+            <div class="scope__col scope__col--in">
+              <p class="plate">In scope <span class="refmark">※</span> every project</p>
+              <h3>Always <em>included</em>.</h3>
+              <ul>
+                <li>Discovery interviews, recorded and transcribed</li>
+                <li>Annotated outline and chapter map</li>
+                <li>Full manuscript drafting <em>—</em> every word by Rob</li>
+                <li>Three rounds of revisions, in the timeline</li>
+                <li>Voice-check feedback loop after each chapter</li>
+                <li>Light structural and line editing of final draft</li>
+                <li>NDA and full ghosting (no by-line, no credit)</li>
+                <li>One real human, project-managing himself</li>
+              </ul>
+            </div>
+            <div class="scope__col scope__col--out">
+              <p class="plate">Out of scope <span class="refmark">※</span> outsourced or extra</p>
+              <h3>Not <em>included</em>.</h3>
+              <ul>
+                <li>Developmental editing by a third-party editor</li>
+                <li>Copy-edit and proofread by a dedicated editor</li>
+                <li>Cover design, interior layout, typesetting</li>
+                <li>Agent representation or publishing strategy</li>
+                <li>Print fulfilment, distribution, marketing</li>
+                <li>Audiobook recording or narration</li>
+                <li>AI tooling, at any stage, ever, for any reason</li>
+                <li>Anyone but Rob writing your sentences</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ PLATE V — QUESTIONS ═══════════════════════════ -->
+    <section class="plate-section plate-section--alt" data-screen-label="FAQ">
+      <div class="book">
+        <p class="plate plate-rule"><span class="plate-num">Plate Ⅴ</span><span>Common questions, plainly answered</span></p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+        <h2 class="h-h">Before you book, <em>five answers</em>.</h2>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+        <div class="entries">
+
+          <details class="entry" open>
+            <summary class="entry__head">
+              <span class="entry__n">i.</span>
+              <h3 class="entry__q">How <em>long</em> does a book take?</h3>
+              <span class="entry__toggle"></span>
+            </summary>
+            <div class="entry__a">
+              Most business books and memoirs run between eight and fourteen months from
+              kickoff to a submission-ready manuscript. Fiction varies more. The pacing
+              is set by interview availability — the more time you can give the discovery
+              phase, the more accurately the book sounds like you.
+            </div>
+          </details>
+
+          <details class="entry">
+            <summary class="entry__head">
+              <span class="entry__n">ii.</span>
+              <h3 class="entry__q">What does it <em>cost</em>?</h3>
+              <span class="entry__toggle"></span>
+            </summary>
+            <div class="entry__a">
+              Ghostwriting is a significant investment — typically in the tens of thousands
+              of dollars for a full-length book. The exact figure depends on length, complexity,
+              and timeline. The paid consult is where we discuss numbers honestly, and the
+              consult fee credits toward the project if we proceed.
+            </div>
+          </details>
+
+          <details class="entry">
+            <summary class="entry__head">
+              <span class="entry__n">iii.</span>
+              <h3 class="entry__q">Will it sound like <em>me</em>, not like you?</h3>
+              <span class="entry__toggle"></span>
+            </summary>
+            <div class="entry__a">
+              Yes — that is the whole job. Voice capture is the first phase for a reason.
+              I work from recorded interviews, your existing writing, and the cadence you
+              use when you talk. The first chapter goes through a voice review before we
+              draft a second.
+            </div>
+          </details>
+
+          <details class="entry">
+            <summary class="entry__head">
+              <span class="entry__n">iv.</span>
+              <h3 class="entry__q">Do you use <em>AI</em> to help?</h3>
+              <span class="entry__toggle"></span>
+            </summary>
+            <div class="entry__a">
+              No — and not in any form. No drafting, no editing assistance, no
+              &ldquo;polishing,&rdquo; no machine summary of your interviews. Every word
+              in your manuscript is written by a human. This is the policy I will not
+              bend on any project. The full standing policy is set out in Plate Ⅴ on the
+              home page.
+            </div>
+          </details>
+
+          <details class="entry">
+            <summary class="entry__head">
+              <span class="entry__n">v.</span>
+              <h3 class="entry__q">Will your name appear <em>anywhere</em>?</h3>
+              <span class="entry__toggle"></span>
+            </summary>
+            <div class="entry__a">
+              Only if you want it to. The default is full ghosting — NDA in place, no
+              by-line, no acknowledgments, no portfolio listing of your project. Some
+              clients prefer a co-author credit; that is a separate conversation we have
+              in the consult.
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ PLATE VI — RESERVATION ════════════════════════ -->
+    <section class="reversed" id="booking" data-screen-label="Booking">
+      <div class="book">
+        <p class="plate plate-rule"><span class="plate-num" style="color:#c97e60;">Plate Ⅵ</span><span>Reservation</span></p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+
+        <aside class="marginalia">
+          <span class="num" style="color:#c97e60;">The only way in</span>
+          The paid consult is the entry point. It is how I make sure I can
+          actually help on your specific project — and how you find out, before
+          any contracts, whether the working relationship feels right.
+        </aside>
+
+        <h2 class="h-H">
+          One call. <em>Sixty minutes.</em><br />
+          Then we both know.
+        </h2>
+
+        <p class="lede gap-2" style="max-width: 56ch;">
+          Open the calendar below. Pick a slot. Pay the consult fee.
+          We talk on the day, and decide — together — whether the book is
+          right to take on.
+        </p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-3);">
+        <div class="wide">
+          <dl class="slip">
+            <p class="slip__title">Discovery consult <em>· reservation card</em></p>
+            <div class="slip__row"><dt>Form</dt><dd>Zoom or telephone</dd></div>
+            <div class="slip__row"><dt>Duration</dt><dd><em>Sixty minutes</em></dd></div>
+            <div class="slip__row"><dt>Fee</dt><dd>Paid up front, credited to the project</dd></div>
+            <div class="slip__row"><dt>Outcome</dt><dd>Honest fit assessment, scope, timing</dd></div>
+            <div class="slip__row"><dt>Calendar</dt><dd><em>Embed lives here in production</em> <span class="refmark">※</span> existing /book-online</dd></div>
+            <a class="lnk lnk--block lnk--on-ink slip__cta" href="#" style="text-align:center; justify-content:center;">Open the calendar →</a>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="colophon-bottom">
+    <div class="book">
+      <div class="colophon-bottom__grid" style="grid-column: text / margin-end;">
+        <div>
+          <p class="colophon-bottom__mark">Rob Swystun <em>&amp;</em> Co.</p>
+          <p class="colophon-bottom__tag">
+            A small writing practice. Books ghostwritten, businesses written for, by hand,
+            from Winnipeg, Manitoba — since two thousand and ten.
+          </p>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="ghostwriting.html">Ghostwriting</a></li>
+            <li><a href="index.html#services">B2B Content</a></li>
+            <li><a href="index.html#services">Articles &amp; Blogs</a></li>
+            <li><a href="index.html#services">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>About</h4>
+          <ul>
+            <li><a href="about.html">Full Bio</a></li>
+            <li><a href="about.html#memberships">Memberships</a></li>
+            <li><a href="about.html#more-endorsements">Endorsements</a></li>
+            <li><a href="index.html#ai">On AI</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Correspondence</h4>
+          <ul>
+            <li><a href="mailto:contact@robswystun.com">contact@robswystun.com</a></li>
+            <li><a href="#booking">Book a consult</a></li>
+            <li><a href="#">LinkedIn ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="colophon-bottom__rule" style="grid-column: text / margin-end;">
+        <p class="colophon-bottom__set">
+          Typeset in <em>EB&nbsp;Garamond</em> and <em>IBM&nbsp;Plex&nbsp;Mono</em>. Composed and
+          published in Winnipeg, Manitoba. Every word on this site written by a human <span class="refmark">※</span>
+          there are no exceptions.
+        </p>
+        <p class="colophon-bottom__meta">
+          <span>© 2010 — 2026 &nbsp; Rob Swystun Content Marketing &amp; Ghostwriting Inc.</span>
+          <span>Plate Ⅵ of Ⅵ &nbsp; <span class="refmark">※</span> &nbsp; End</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

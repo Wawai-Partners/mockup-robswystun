@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — Rob Swystun</title>
+  <meta name="description" content="Rob Swystun is a Winnipeg-based published author, book ghostwriter, and B2B content marketer with 20+ years of writing experience." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Page-specific: timeline as catalog */
+    .timeline {
+      border-top: var(--rule-strong);
+      margin-top: var(--s-2);
+    }
+    .timeline__entry {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 32px;
+      padding: 22px 0;
+      border-bottom: var(--rule);
+      align-items: baseline;
+    }
+    .timeline__years {
+      font-family: var(--font-meta);
+      font-size: 11.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--oxblood);
+      padding-top: 6px;
+    }
+    .timeline__title {
+      font-family: var(--font-text);
+      font-size: 26px;
+      line-height: 1.1;
+      color: var(--ink);
+      letter-spacing: -0.008em;
+      margin-bottom: 6px;
+    }
+    .timeline__title em { font-style: italic; color: var(--oxblood); }
+    .timeline__body {
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      max-width: 60ch;
+    }
+    @media (max-width: 720px) {
+      .timeline__entry { grid-template-columns: 1fr; gap: 8px; }
+      .timeline__years { padding-top: 0; }
+    }
+
+    /* Memberships as typographic register */
+    .register {
+      border-top: var(--rule-strong);
+    }
+    .register__row {
+      display: grid;
+      grid-template-columns: 70px 1fr 1fr;
+      gap: 32px;
+      padding: 22px 0;
+      border-bottom: var(--rule);
+      align-items: baseline;
+    }
+    .register__n {
+      font-family: var(--font-text);
+      font-style: italic;
+      color: var(--oxblood);
+      font-size: 22px;
+    }
+    .register__name {
+      font-family: var(--font-text);
+      font-size: 24px;
+      line-height: 1.1;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+    }
+    .register__meta {
+      font-family: var(--font-meta);
+      font-size: 11.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      line-height: 1.5;
+    }
+    @media (max-width: 720px) {
+      .register__row { grid-template-columns: 40px 1fr; gap: 14px; }
+      .register__meta { grid-column: 2; }
+    }
+  </style>
+</head>
+<body data-screen-label="02 About">
+  <a class="skip" href="#main">Skip to text</a>
+
+  <header class="colophon-top">
+    <div class="colophon-top__inner">
+      <a href="index.html" class="colophon-top__brand">
+        Rob Swystun <em>&amp;</em> Co. <span style="color:var(--ink-faded); font-family: var(--font-meta); font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; margin-left: 14px;">Content · Ghostwriting</span>
+      </a>
+      <nav class="colophon-top__nav" aria-label="Primary">
+        <a href="index.html"><span class="num">I</span>Home</a>
+        <a href="ghostwriting.html"><span class="num">II</span>Ghostwriting</a>
+        <a aria-current="page" href="about.html"><span class="num">III</span>About</a>
+        <a href="index.html#correspondence"><span class="num">IV</span>Write</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ═══════ PLATE I — TITLE ═══════════════════════════════ -->
+    <section class="plate-section plate-section--lead" data-screen-label="About title">
+      <div class="book">
+        <p class="plate plate-rule">
+          <span class="plate-num">Plate Ⅰ</span>
+          <span><a href="index.html" class="lnk" style="border:0;">Home</a> <span style="color: var(--ink-faded);">/</span> About</span>
+        </p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+
+        <aside class="marginalia">
+          <span class="num">A short biography</span>
+          <strong>Rob Swystun</strong><br />
+          Writer &amp; Ghostwriter<br />
+          Winnipeg, MB<br />
+          <br />
+          Reading at present:<br />
+          <em>The Power Broker</em> — Caro, 1974.<br />
+          <em>How to Read a Book</em> — Adler, 1940.
+        </aside>
+
+        <h1 class="h-display">
+          A writer, <em>by</em><br />
+          training and<br />
+          by <em>habit</em>.
+        </h1>
+
+        <p class="lede gap-2" style="max-width: 42ch;">
+          A short version: a published fiction author, book ghostwriter,
+          and B2B content marketer working alone, by hand, from Winnipeg.
+          Twenty years in. Still writing every word himself.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════ PLATE II — ESSAY ══════════════════════════════ -->
+    <section class="plate-section" data-screen-label="Bio essay">
+      <div class="book">
+        <p class="plate plate-rule"><span class="plate-num">Plate Ⅱ</span><span>The long version</span></p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+
+        <aside class="marginalia">
+          <span class="num">¶ 1 of 5</span>
+          On entering the trade in 2005,
+          one paragraph at a time.
+        </aside>
+
+        <div class="dropcap">
+          <p>
+            I've been writing professionally since 2005, when I sold my first piece
+            of journalism while still figuring out what professional writing even meant.
+            Twenty years later, I have a clearer answer: it means showing up with the
+            discipline of a tradesperson and the ear of an editor, for whoever is paying
+            you to do it well.
+          </p>
+        </div>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-1);">
+        <aside class="marginalia">
+          <span class="num">¶ 2 of 5 — Ghostwriting</span>
+          13+ years. Business books, memoirs, the occasional novel.
+        </aside>
+
+        <h3 class="h-h" style="font-size: 28px; margin-bottom: 12px;">The ghostwriting practice.</h3>
+        <p>
+          I've been ghostwriting books and long-form thought-leadership for thirteen years.
+          The clients are usually executives, founders, and professionals with a book's
+          worth of expertise but no spare ten months to turn it into a manuscript. My job
+          is to extract what they know, write it in their voice, and disappear from the
+          acknowledgments page. Business books, memoir, the occasional novel.
+        </p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-1);">
+        <aside class="marginalia">
+          <span class="num">¶ 3 of 5 — B2B writing</span>
+          90+ companies, 120+ thought-leadership articles ghosted.
+        </aside>
+
+        <h3 class="h-h" style="font-size: 28px; margin-bottom: 12px;">The B2B content marketing practice.</h3>
+        <p>
+          On the marketing side, I've written for 90+ companies — articles, blogs,
+          white papers, case studies, press releases, landing pages. Mostly for B2B
+          teams in SaaS, biosciences, fintech, electric vehicles, and franchising.
+          The work is straightforward: understand the audience, do the research, write
+          something a real person would want to finish reading.
+        </p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-1);">
+        <aside class="marginalia marginalia--ox">
+          <span class="num">¶ 4 of 5 — The promise</span>
+          A standing policy.<br />
+          <a class="lnk" href="index.html#ai">See Plate Ⅴ on Home →</a>
+        </aside>
+
+        <h3 class="h-h" style="font-size: 28px; margin-bottom: 12px;">The promise I won't bend.</h3>
+        <p>
+          Every word that leaves my desk is written by a human — by me. I don't use
+          AI to draft, &ldquo;polish,&rdquo; restructure, or assist. If a sentence is
+          in your project, it came from someone who thought about it.
+          <span class="rubric">That is a strange thing to need to say in 2026</span>,
+          but it is the most important promise this practice makes.
+        </p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-1);">
+        <aside class="marginalia">
+          <span class="num">¶ 5 of 5 — Sincerely</span>
+          The signature is real.
+          The practice is incorporated in Manitoba.
+        </aside>
+
+        <p style="font-family: var(--font-meta); font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faded);">Signed,</p>
+        <p style="font-family: var(--font-text); font-style: italic; font-size: 48px; line-height: 1; color: var(--oxblood); letter-spacing: -0.01em; margin-top: 12px;">
+          Rob Swystun
+        </p>
+        <p style="font-family: var(--font-meta); font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faded); margin-top: 12px;">
+          For Rob Swystun Content Marketing &amp; Ghostwriting Inc.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════ PLATE III — TIMELINE ══════════════════════════ -->
+    <section class="plate-section plate-section--alt" data-screen-label="Timeline">
+      <div class="book">
+        <p class="plate plate-rule"><span class="plate-num">Plate Ⅲ</span><span>A short timeline of the practice</span></p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+        <h2 class="h-h">Twenty years, in <em>four notes</em>.</h2>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+        <ol class="timeline">
+          <li class="timeline__entry">
+            <span class="timeline__years">2005 — 2009</span>
+            <div>
+              <h3 class="timeline__title">First by-lines, in print.</h3>
+              <p class="timeline__body">
+                Print journalism and trade publications across Manitoba.
+                Learned to interview, edit, and meet a deadline that did not move.
+              </p>
+            </div>
+          </li>
+          <li class="timeline__entry">
+            <span class="timeline__years">2010</span>
+            <div>
+              <h3 class="timeline__title">Practice <em>founded</em>.</h3>
+              <p class="timeline__body">
+                Rob Swystun Content Marketing &amp; Ghostwriting Inc. opens for B2B clients.
+                First articles published under client names.
+              </p>
+            </div>
+          </li>
+          <li class="timeline__entry">
+            <span class="timeline__years">2013 — present</span>
+            <div>
+              <h3 class="timeline__title">Ghostwriting becomes a specialty.</h3>
+              <p class="timeline__body">
+                Books and long-form thought-leadership become the second pillar.
+                120+ articles ghostwritten across industries; the first full-length
+                book manuscript delivered in 2014.
+              </p>
+            </div>
+          </li>
+          <li class="timeline__entry">
+            <span class="timeline__years">2023 — present</span>
+            <div>
+              <h3 class="timeline__title">Human-written, <em>declared in writing</em>.</h3>
+              <p class="timeline__body">
+                Formal policy adopted: no AI in drafting, editing, or polishing.
+                Every project, end to end, written by a human. The policy is set out in
+                Plate <span class="refmark">Ⅴ</span> on the home page.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══════ PLATE IV — MEMBERSHIPS ═══════════════════════ -->
+    <section class="plate-section" id="memberships" data-screen-label="Memberships">
+      <div class="book">
+        <p class="plate plate-rule"><span class="plate-num">Plate Ⅳ</span><span>Register of professional memberships</span></p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+        <h2 class="h-h">In good <em>company</em>.</h2>
+        <p class="lede gap-1" style="max-width: 56ch;">
+          Five professional bodies. Not awards — evidence of ongoing
+          membership in a community of working writers and editors.
+        </p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+        <ol class="register">
+          <li class="register__row">
+            <span class="register__n">i.</span>
+            <span class="register__name">Association of Ghostwriters</span>
+            <span class="register__meta">Professional member <span class="refmark">※</span> international</span>
+          </li>
+          <li class="register__row">
+            <span class="register__n">ii.</span>
+            <span class="register__name">Editorial Freelancers Association</span>
+            <span class="register__meta">Member <span class="refmark">※</span> New York City</span>
+          </li>
+          <li class="register__row">
+            <span class="register__n">iii.</span>
+            <span class="register__name">Canadian Authors Association</span>
+            <span class="register__meta">Member <span class="refmark">※</span> est. 1921</span>
+          </li>
+          <li class="register__row">
+            <span class="register__n">iv.</span>
+            <span class="register__name">Manitoba Writers Guild</span>
+            <span class="register__meta">Local member <span class="refmark">※</span> Winnipeg</span>
+          </li>
+          <li class="register__row">
+            <span class="register__n">v.</span>
+            <span class="register__name">The Well</span>
+            <span class="register__meta">Writing community</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══════ PLATE V — MORE ENDORSEMENTS ══════════════════ -->
+    <section class="plate-section plate-section--alt" id="more-endorsements" data-screen-label="More endorsements">
+      <div class="book">
+        <p class="plate plate-rule"><span class="plate-num">Plate Ⅴ</span><span>Endorsements <span class="refmark">※</span> continued from Home</span></p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+        <h2 class="h-h">Three more, <em>for the record</em>.</h2>
+        <p class="lede gap-1" style="max-width: 56ch;">
+          A magazine publisher, an in-house marketing manager, and a
+          financial planner — three different writing assignments, same
+          standard of care.
+        </p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+
+        <figure class="epigraph">
+          <blockquote class="epigraph__body">
+            I have always found him to be professional and great to work with.
+            He understands the brief and delivers, every time.
+          </blockquote>
+          <figcaption class="epigraph__attrib">
+            <strong>Vikki Bradbury</strong>&nbsp;&nbsp;<em>—</em>&nbsp;&nbsp;Publisher, Franchising USA
+          </figcaption>
+        </figure>
+
+        <figure class="epigraph">
+          <blockquote class="epigraph__body">
+            His ability to write technical information in an approachable style
+            has been very helpful for our team.
+          </blockquote>
+          <figcaption class="epigraph__attrib">
+            <strong>Jaziel Exposito</strong>&nbsp;&nbsp;<em>—</em>&nbsp;&nbsp;Marketing Manager, Blink Charging
+          </figcaption>
+        </figure>
+
+        <figure class="epigraph">
+          <blockquote class="epigraph__body">
+            He has always been able to reflect my voice while at the same time
+            producing a far more polished result.
+          </blockquote>
+          <figcaption class="epigraph__attrib">
+            <strong>Shyam Ganesh</strong>&nbsp;&nbsp;<em>—</em>&nbsp;&nbsp;Certified Financial Planner, Grow Your Wealth
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ═══════ PLATE VI — RETURN TO CORRESPONDENCE ══════════ -->
+    <section class="reversed" data-screen-label="About CTA">
+      <div class="book">
+        <p class="plate plate-rule"><span class="plate-num" style="color:#c97e60;">Plate Ⅵ</span><span>Closing matter</span></p>
+      </div>
+
+      <div class="book" style="margin-top: var(--s-2);">
+        <aside class="marginalia">
+          <span class="num" style="color:#c97e60;">Ready when you are</span>
+          For ghostwriting, a paid 60-minute consult.<br />
+          For B2B content, a direct email.
+        </aside>
+
+        <h2 class="h-H">
+          Let us write something<br />
+          that sounds like <em>you</em>.
+        </h2>
+
+        <p class="gap-2">
+          <a class="lnk lnk--block lnk--on-ink" href="ghostwriting.html">Book a ghostwriting consult →</a>
+          &nbsp;&nbsp;
+          <a class="lnk lnk--on-ink" href="mailto:contact@robswystun.com">contact@robswystun.com</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="colophon-bottom">
+    <div class="book">
+      <div class="colophon-bottom__grid" style="grid-column: text / margin-end;">
+        <div>
+          <p class="colophon-bottom__mark">Rob Swystun <em>&amp;</em> Co.</p>
+          <p class="colophon-bottom__tag">
+            A small writing practice. Books ghostwritten, businesses written for, by hand,
+            from Winnipeg, Manitoba — since two thousand and ten.
+          </p>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="ghostwriting.html">Ghostwriting</a></li>
+            <li><a href="index.html#services">B2B Content</a></li>
+            <li><a href="index.html#services">Articles &amp; Blogs</a></li>
+            <li><a href="index.html#services">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>About</h4>
+          <ul>
+            <li><a href="about.html">Full Bio</a></li>
+            <li><a href="#memberships">Memberships</a></li>
+            <li><a href="#more-endorsements">Endorsements</a></li>
+            <li><a href="index.html#ai">On AI</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Correspondence</h4>
+          <ul>
+            <li><a href="mailto:contact@robswystun.com">contact@robswystun.com</a></li>
+            <li><a href="ghostwriting.html">Book a consult</a></li>
+            <li><a href="#">LinkedIn ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="colophon-bottom__rule" style="grid-column: text / margin-end;">
+        <p class="colophon-bottom__set">
+          Typeset in <em>EB&nbsp;Garamond</em> and <em>IBM&nbsp;Plex&nbsp;Mono</em>. Composed and
+          published in Winnipeg, Manitoba. Every word on this site written by a human <span class="refmark">※</span>
+          there are no exceptions.
+        </p>
+        <p class="colophon-bottom__meta">
+          <span>© 2010 — 2026 &nbsp; Rob Swystun Content Marketing &amp; Ghostwriting Inc.</span>
+          <span>Plate Ⅵ of Ⅵ &nbsp; <span class="refmark">※</span> &nbsp; End</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

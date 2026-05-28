@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Design system — Rob Swystun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Core — dark by default */
+    --page:        #0A0A0A;   /* near-black page */
+    --page-2:      #141414;   /* card / panel backdrop on dark */
+    --line:        #232323;   /* hairlines on dark */
+    --line-2:      #2E2E2E;   /* slightly stronger divider */
+    --text:        #FFFFFF;
+    --text-soft:   #D4D4D4;
+    --text-mute:   #8A8A8A;
+
+    /* Inverted (for light card sections) */
+    --light:       #FFFFFF;
+    --ink:         #0A0A0A;
+    --ink-soft:    #2B2B2B;
+    --ink-mute:    #6B6B6B;
+    --light-rule:  #E4E4E1;
+
+    /* Accents — readable on both light and dark */
+    --blue:        #6FA0E6;   /* primary accent, on dark */
+    --blue-deep:   #2F5FA8;   /* accent on light */
+    --warm:        #F0C84C;   /* warm yellow, secondary accent */
+    --warm-deep:   #B58A12;   /* yellow on light */
+
+    /* Type */
+    --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    /* Scale (a touch larger at display, kitbashed-ish) */
+    --t-12: 0.75rem;
+    --t-13: 0.8125rem;
+    --t-14: 0.875rem;
+    --t-16: 1rem;
+    --t-18: 1.125rem;
+    --t-20: 1.25rem;
+    --t-24: 1.5rem;
+    --t-30: 1.875rem;
+    --t-40: 2.5rem;
+    --t-56: 3.5rem;
+    --t-80: 5rem;
+    --t-112: 7rem;
+
+    /* Spacing — 8pt */
+    --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px;
+    --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px; --s-11: 160px;
+
+    --maxw: 1280px;
+    --gutter: 32px;
+  }
+
+  *{ box-sizing: border-box }
+  html, body{ margin: 0; padding: 0 }
+  body{
+    background: var(--page);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: var(--t-16);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01","cv11";
+  }
+  ::selection{ background: var(--blue); color: var(--ink); }
+  a{ color: inherit; text-decoration: none; }
+
+  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+  section{ padding: var(--s-10) 0; border-top: 1px solid var(--line); }
+  section:first-of-type{ border-top: 0 }
+
+  /* Light card section variant */
+  .inverted{
+    background: var(--light);
+    color: var(--ink);
+    border-top: 0;
+    margin: 0;
+  }
+  .inverted .sec-num{ color: var(--ink-mute); }
+  .inverted .sec-title{ color: var(--ink); }
+  .inverted .ts-small{ color: var(--ink-mute); }
+  .inverted hr{ border-color: var(--light-rule); }
+
+  /* Section head */
+  .sec-head{ display:flex; align-items:baseline; gap: var(--s-5); margin-bottom: var(--s-8);}
+  .sec-num{ font-family: var(--mono); font-size: var(--t-13); color: var(--text-mute);}
+  .sec-title{ font-weight: 700; font-size: var(--t-40); letter-spacing: -0.035em; margin: 0;}
+  .sec-eyebrow{ font-family: var(--mono); font-size: var(--t-13); color: var(--blue); margin-bottom: var(--s-3);}
+
+  /* === MASTHEAD === */
+  .masthead{ padding: var(--s-7) 0 var(--s-11); border-top: 0;}
+  .topbar{ display:flex; justify-content: space-between; align-items: center; padding-bottom: var(--s-7); }
+  .brandmark{ font-weight: 700; font-size: var(--t-18); letter-spacing: -0.02em;}
+  .brandmark .dot{ color: var(--warm); }
+  .topnav{ display:flex; gap: var(--s-5); font-size: var(--t-14); color: var(--text-soft);}
+
+  .masthead h1{
+    font-weight: 800; font-size: clamp(56px, 9vw, 112px);
+    line-height: 0.92; letter-spacing: -0.045em;
+    margin: var(--s-8) 0 var(--s-6); max-width: 18ch;
+  }
+  .masthead h1 .blue{ color: var(--blue); }
+  .masthead h1 .warm{ color: var(--warm); }
+
+  .masthead .dek{ font-size: var(--t-20); max-width: 56ch; color: var(--text-soft); margin: 0;}
+
+  .masthead .meta{ display:flex; gap: var(--s-7); margin-top: var(--s-8); font-family: var(--mono); font-size: var(--t-13); color: var(--text-mute);}
+
+  /* === WORDMARK === */
+  .logo-grid{ display:grid; grid-template-columns: 1.2fr .8fr; gap: var(--s-5);}
+  .logo-card{
+    background: var(--page-2); border: 1px solid var(--line);
+    padding: var(--s-9); display:flex; flex-direction:column;
+    justify-content:center; align-items:center; min-height: 360px; position: relative;
+  }
+  .logo-card.light{ background: var(--light); color: var(--ink); border-color: var(--light-rule); }
+  .logo-card .label{
+    position:absolute; top: var(--s-4); left: var(--s-4);
+    font-family: var(--mono); font-size: var(--t-12); color: var(--text-mute);
+  }
+  .logo-card.light .label{ color: var(--ink-mute); }
+
+  .wordmark{ font-weight: 800; font-size: 56px; letter-spacing: -0.04em; line-height: 1; }
+  .wordmark .dot{ color: var(--warm); }
+  .logo-card.light .wordmark .dot{ color: var(--warm-deep); }
+
+  .monogram{ font-weight: 900; font-size: 120px; line-height: 0.9; letter-spacing: -0.07em;}
+  .monogram .dot{ color: var(--warm); }
+  .logo-card.light .monogram .dot{ color: var(--warm-deep); }
+
+  .lockup{ display:flex; flex-direction:column; gap: var(--s-2); align-items:center;}
+  .lockup .role{ font-family: var(--mono); font-size: var(--t-13); color: var(--text-mute); margin-top: var(--s-3);}
+  .logo-card.light .lockup .role{ color: var(--ink-mute); }
+
+  .logo-notes{ margin-top: var(--s-8); }
+  .logo-notes ul{ list-style:none; padding:0; margin:0; }
+  .logo-notes li{
+    padding: var(--s-5) 0; border-bottom: 1px solid var(--line);
+    display:grid; grid-template-columns: 180px 1fr; gap: var(--s-5); align-items: baseline;
+  }
+  .logo-notes li strong{ font-family: var(--mono); font-weight: 500; font-size: var(--t-13); color: var(--text-mute);}
+  .logo-notes li span{ font-size: var(--t-18); line-height: 1.5; color: var(--text-soft);}
+
+  /* === COLOR === */
+  .swatch-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4);}
+  .swatch{
+    background: var(--page-2); border: 1px solid var(--line);
+    padding: var(--s-5); display:flex; flex-direction:column; gap: var(--s-3);
+  }
+  .swatch .chip{ height: 140px; border: 1px solid rgba(255,255,255,.04);}
+  .swatch .name{ font-weight: 600; font-size: var(--t-20); margin:0;}
+  .swatch .hex{ font-family: var(--mono); font-size: var(--t-13); color: var(--text-mute);}
+  .swatch .use{ font-size: var(--t-14); color: var(--text-soft); line-height: 1.5;}
+
+  /* === TYPOGRAPHY === */
+  .type-row{
+    display:grid; grid-template-columns: 240px 1fr; gap: var(--s-7);
+    padding: var(--s-6) 0; border-bottom: 1px solid var(--line); align-items: baseline;
+  }
+  .type-row:last-child{ border-bottom: 0 }
+  .type-row .meta{ font-family: var(--mono); font-size: var(--t-12); color: var(--text-mute); line-height: 1.6;}
+  .type-row .meta strong{ display:block; color: var(--text); font-weight: 600; margin-bottom: 4px; font-size: var(--t-14); font-family: var(--sans);}
+
+  .ts-display{ font-weight: 800; font-size: var(--t-80); line-height: 0.92; letter-spacing: -0.045em;}
+  .ts-h1{ font-weight: 700; font-size: var(--t-56); line-height: 0.98; letter-spacing: -0.035em;}
+  .ts-h2{ font-weight: 700; font-size: var(--t-40); line-height: 1.05; letter-spacing: -0.025em;}
+  .ts-h3{ font-weight: 600; font-size: var(--t-24); line-height: 1.2; letter-spacing: -0.012em;}
+  .ts-dek{ font-weight: 400; font-size: var(--t-20); line-height: 1.5; color: var(--text-soft);}
+  .ts-body{ font-weight: 400; font-size: var(--t-18); line-height: 1.65; color: var(--text);}
+  .ts-small{ font-size: var(--t-14); line-height: 1.55; color: var(--text-mute);}
+  .ts-eyebrow{ font-family: var(--mono); font-size: var(--t-13); color: var(--blue);}
+  .ts-arrow{ font-weight: 700; font-size: var(--t-56); line-height: 1; letter-spacing: -0.03em;}
+  .ts-arrow .head{ color: var(--text); }
+  .ts-arrow .arrow{ color: var(--text-mute); margin: 0 .2em; font-weight: 500; }
+  .ts-arrow .tag{ color: var(--blue); }
+
+  /* === SPACING === */
+  .space-grid{ display:grid; grid-template-columns: repeat(5,1fr); gap: var(--s-4);}
+  .space-cell{
+    background: var(--page-2); border: 1px solid var(--line);
+    padding: var(--s-4); display:flex; flex-direction: column; gap: var(--s-3);
+  }
+  .space-bar{ background: var(--blue); height: 8px;}
+  .space-cell .lbl{ font-family: var(--mono); font-size: var(--t-12); color: var(--text-mute);}
+
+  /* === COMPONENTS === */
+  .comp-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: var(--s-5);}
+  .comp{
+    background: var(--page-2); border: 1px solid var(--line);
+    padding: var(--s-7); display:flex; flex-direction:column; gap: var(--s-5); position: relative;
+  }
+  .comp .ctitle{
+    position:absolute; top: var(--s-4); right: var(--s-5);
+    font-family: var(--mono); font-size: var(--t-12); color: var(--text-mute);
+  }
+
+  /* Buttons — pill, kitbashed-style */
+  .btn{
+    display:inline-flex; align-items:center; gap: 10px;
+    font-family: var(--sans); font-weight: 600; font-size: var(--t-16);
+    padding: 16px 28px; border-radius: 999px; border: 0; cursor: pointer;
+    background: var(--blue); color: var(--ink);
+    transition: transform .25s ease, background .25s ease;
+  }
+  .btn:hover{ background: var(--warm); transform: translateY(-1px);}
+  .btn .arrow{ display:inline-block; transition: transform .25s ease; }
+  .btn:hover .arrow{ transform: translateX(4px); }
+  .btn.ghost{ background: transparent; color: var(--text); border: 1px solid var(--text);}
+  .btn.ghost:hover{ background: var(--text); color: var(--ink); border-color: var(--text); transform: translateY(-1px);}
+  .btn.link{
+    background: transparent; border: 0; padding: 0; border-radius: 0;
+    color: var(--text); font-weight: 500;
+    border-bottom: 1px solid var(--text-mute); padding-bottom: 4px;
+  }
+  .btn.link:hover{ color: var(--blue); border-color: var(--blue); background: transparent; transform: none;}
+
+  /* Service card with arrow notation */
+  .service-card{
+    background: var(--page); border: 1px solid var(--line);
+    padding: var(--s-7); display:flex; flex-direction:column; gap: var(--s-5);
+  }
+  .service-card .lbl{ font-family: var(--mono); font-size: var(--t-13); color: var(--text-mute);}
+  .service-card h4{
+    font-weight: 700; font-size: var(--t-30); letter-spacing: -0.025em; line-height: 1.05;
+    margin: 0;
+  }
+  .service-card h4 .arrow{ color: var(--text-mute); font-weight: 500; margin: 0 .15em;}
+  .service-card h4 .accent{ color: var(--blue); }
+  .service-card h4 .accent-warm{ color: var(--warm); }
+  .service-card p{ margin: 0; color: var(--text-soft); font-size: var(--t-16); line-height: 1.6;}
+
+  /* Checklist (kitbashed-style) */
+  .check-list{ list-style: none; padding: 0; margin: 0; display:flex; flex-direction: column; gap: var(--s-3);}
+  .check-list li{ display:flex; gap: var(--s-3); align-items:center; font-size: var(--t-16);}
+  .check-list li::before{
+    content: "";
+    width: 18px; height: 18px; border: 1.5px solid var(--text-mute);
+    border-radius: 4px; flex-shrink: 0;
+    position: relative;
+  }
+
+  /* Pull quote */
+  .pull-quote{ border-left: 2px solid var(--blue); padding-left: var(--s-5); margin: 0;}
+  .pull-quote p{
+    font-weight: 500; font-size: var(--t-24); line-height: 1.35;
+    letter-spacing: -0.012em; margin: 0 0 var(--s-3);
+  }
+  .pull-quote cite{ font-style: normal; font-size: var(--t-14); color: var(--text-mute);}
+
+  /* Stat */
+  .stat{ display:flex; flex-direction:column; gap: 4px;}
+  .stat .num{ font-weight: 800; font-size: var(--t-80); line-height: 0.9; letter-spacing: -0.04em;}
+  .stat .num .plus{ color: var(--blue);}
+  .stat .num .warm{ color: var(--warm);}
+  .stat .lbl{ font-family: var(--mono); font-size: var(--t-13); color: var(--text-mute); margin-top: 6px;}
+
+  /* Tag */
+  .tag{
+    display:inline-block; font-size: var(--t-13); font-weight: 500;
+    padding: 6px 14px; border: 1px solid var(--line-2); color: var(--text-soft);
+    border-radius: 999px;
+  }
+
+  /* Rules */
+  .rule-thin{ height:1px; background: var(--line); border:0;}
+  .rule-thick{ height: 2px; background: var(--text); border: 0; width: 80px;}
+
+  /* Grid demo */
+  .grid-demo{ display:grid; grid-template-columns: repeat(12, 1fr); gap: var(--s-3); margin-top: var(--s-5);}
+  .grid-demo .col{
+    background: rgba(111,160,230,.10); border-top: 2px solid var(--blue); height: 56px;
+    display:flex; align-items: center; justify-content:center;
+    font-family: var(--mono); font-size: 11px; color: var(--blue);
+  }
+
+  /* Footer */
+  footer{ padding: var(--s-8) 0 var(--s-9); border-top: 1px solid var(--line); }
+  footer .row{
+    display:flex; justify-content: space-between; align-items:baseline;
+    font-family: var(--mono); font-size: var(--t-13); color: var(--text-mute);
+  }
+  footer .signoff{ display:flex; gap: var(--s-2); align-items: baseline; font-weight: 700; font-size: var(--t-20); letter-spacing: -0.02em;}
+  footer .signoff .dot{ color: var(--warm); }
+
+  /* Responsive */
+  @media (max-width: 860px){
+    .logo-grid, .comp-grid{ grid-template-columns: 1fr;}
+    .swatch-grid{ grid-template-columns: repeat(2, 1fr);}
+    .space-grid{ grid-template-columns: repeat(2, 1fr);}
+    .type-row{ grid-template-columns: 1fr; gap: var(--s-3);}
+    .logo-notes li{ grid-template-columns: 1fr; gap: var(--s-2);}
+    .ts-display{ font-size: var(--t-56);}
+    .ts-h1{ font-size: var(--t-40);}
+    .ts-arrow{ font-size: var(--t-40);}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="topbar">
+      <div class="brandmark">Rob Swystun<span class="dot">.</span></div>
+      <nav class="topnav">
+        <span>Brand</span>
+        <span>Design system</span>
+        <span style="color:var(--text-mute)">v 0.4</span>
+      </nav>
+    </div>
+
+    <h1>Words built to <span class="blue">last</span>, voices built to <span class="warm">carry</span>.</h1>
+    <p class="dek">A black-canvas identity for a twenty-year writer. Heavy typography, generous space, one bright pill of color where it counts — and nothing that says “made by a template.”</p>
+
+    <div class="meta">
+      <span>v 0.4 · 2026</span>
+      <span>Design system</span>
+      <span>Inspired by kitbashedcreative.com</span>
+    </div>
+  </header>
+
+  <!-- 01 — WORDMARK -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">Wordmark and monogram</h2>
+    </div>
+    <p class="ts-dek" style="max-width: 60ch; margin: 0 0 var(--s-8);">The name is the mark. A heavy sans-serif wordmark with a small warm period — a writer’s full stop and the only color in the lockup.</p>
+
+    <div class="logo-grid">
+      <div class="logo-card">
+        <span class="label">Primary wordmark · dark</span>
+        <div class="lockup">
+          <div class="wordmark">Rob&nbsp;Swystun<span class="dot">.</span></div>
+          <div class="role">Writer and ghostwriter</div>
+        </div>
+      </div>
+      <div class="logo-card light">
+        <span class="label">Monogram · light</span>
+        <div class="lockup">
+          <div class="monogram">rs<span class="dot">.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-notes">
+      <ul>
+        <li><strong>Concept</strong><span>No icon, no flourish. A bold, plain sans-serif name with a single warm period — used in place of an icon at small sizes.</span></li>
+        <li><strong>Construction</strong><span>Inter, weight 800, letter-spacing −0.04em. The period is the only color in the lockup.</span></li>
+        <li><strong>Minimum size</strong><span>Wordmark: 14 px on screen, 10 mm in print. Monogram: 20 px / 14 mm.</span></li>
+        <li><strong>Clear space</strong><span>Equal to the cap height of “R” on all sides.</span></li>
+        <li><strong>Don’ts</strong><span>Don’t use a lighter weight. Don’t color anything beyond the period. Don’t italicize. Don’t set in all caps. Don’t lock it up with a tagline directly underneath.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 02 — COLOR -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Color</h2>
+    </div>
+    <p class="ts-dek" style="max-width: 60ch; margin: 0 0 var(--s-8);">Black and white do the work. Blue marks. Yellow warms. Two accents, used in single words inside headlines and on one primary button per view.</p>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="chip" style="background: var(--page); border-color: var(--line);"></div>
+        <p class="name">Page</p>
+        <span class="hex">#0A0A0A</span>
+        <span class="use">The primary surface. Near-black, never pure.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--page-2)"></div>
+        <p class="name">Panel</p>
+        <span class="hex">#141414</span>
+        <span class="use">Card, swatch, and component backgrounds inside dark sections.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--text)"></div>
+        <p class="name">Text</p>
+        <span class="hex">#FFFFFF</span>
+        <span class="use">Headlines and body copy on dark. The default voice.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--text-mute)"></div>
+        <p class="name">Mute</p>
+        <span class="hex">#8A8A8A</span>
+        <span class="use">Captions, metadata, secondary nav, arrows in the section notation.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--blue)"></div>
+        <p class="name">Blue</p>
+        <span class="hex">#6FA0E6</span>
+        <span class="use">Primary accent on dark. One or two words per headline. The primary pill button.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--blue-deep)"></div>
+        <p class="name">Blue · deep</p>
+        <span class="hex">#2F5FA8</span>
+        <span class="use">Blue used on white card sections, where it needs to sit on light.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--warm)"></div>
+        <p class="name">Warm</p>
+        <span class="hex">#F0C84C</span>
+        <span class="use">Secondary accent. The wordmark period. One alternate hover state. Use sparingly.</span>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: var(--light)"></div>
+        <p class="name">Light</p>
+        <span class="hex">#FFFFFF</span>
+        <span class="use">Pure white card sections — used to break the black with a quiet inverted moment.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — TYPOGRAPHY -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Typography</h2>
+    </div>
+    <p class="ts-dek" style="max-width: 60ch; margin: 0 0 var(--s-8);">One family: Inter. Heavy at display, regular at body. No serif anywhere. No italics in headlines. No all caps anywhere.</p>
+
+    <div class="type-row">
+      <div class="meta"><strong>Display · Inter</strong>80 px · weight 800<br/>letter-spacing −0.045em<br/>line-height 0.92</div>
+      <div class="ts-display">The story you haven’t told yet.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>H1 · Inter</strong>56 px · weight 700<br/>letter-spacing −0.035em</div>
+      <div class="ts-h1">Twenty years. Ninety companies. One voice.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>H2 · Inter</strong>40 px · weight 700</div>
+      <div class="ts-h2">A working partnership, one project at a time.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>Arrow head · Inter</strong>56 px · weight 700<br/>section notation</div>
+      <div class="ts-arrow"><span class="head">Service</span><span class="arrow">→</span><span class="tag">Ghostwriting</span></div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>H3 · Inter</strong>24 px · weight 600</div>
+      <div class="ts-h3">Easy working style</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>Dek · Inter</strong>20 px · weight 400<br/>color Text soft</div>
+      <div class="ts-dek">A subhead under a heading. Quieter than the headline by a wide margin.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>Body · Inter</strong>18 / 16 px · weight 400<br/>line-height 1.65</div>
+      <div class="ts-body">Inter handles every long-form paragraph and every UI label. The heavy weight is reserved for the headline voice; body keeps to weight 400 so the headline can shout without competition.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>Eyebrow · JetBrains Mono</strong>13 px · weight 500<br/>color Blue</div>
+      <div class="ts-eyebrow">A section label, in sentence case.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>Pull quote · Inter</strong>24 px · weight 500</div>
+      <blockquote class="pull-quote" style="border-color: var(--blue)">
+        <p>Rob delivered everything from a solid content strategy to long-form web copy to catchy taglines and ad copy.</p>
+        <cite>— Robert Laplante, Workshop Built Inc.</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- 04 — SPACING -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Spacing and grid</h2>
+    </div>
+    <p class="ts-dek" style="max-width: 60ch; margin: 0 0 var(--s-8);">An 8-point base. Sections breathe big — minimum 96px top and bottom. White space is treated as content.</p>
+
+    <div class="space-grid">
+      <div class="space-cell"><div class="space-bar" style="width:4px"></div><span class="lbl">04 · 4px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:8px"></div><span class="lbl">08 · 8px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:16px"></div><span class="lbl">16 · 16px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:24px"></div><span class="lbl">24 · 24px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:32px"></div><span class="lbl">32 · 32px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:48px"></div><span class="lbl">48 · 48px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:64px"></div><span class="lbl">64 · 64px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:96px"></div><span class="lbl">96 · 96px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:128px"></div><span class="lbl">128 · 128px</span></div>
+      <div class="space-cell"><div class="space-bar" style="width:160px"></div><span class="lbl">160 · 160px</span></div>
+    </div>
+
+    <div style="margin-top: var(--s-8);">
+      <div class="ts-eyebrow">12-column grid · 1280px max · 32px gutter</div>
+      <div class="grid-demo">
+        <div class="col">1</div><div class="col">2</div><div class="col">3</div><div class="col">4</div>
+        <div class="col">5</div><div class="col">6</div><div class="col">7</div><div class="col">8</div>
+        <div class="col">9</div><div class="col">10</div><div class="col">11</div><div class="col">12</div>
+      </div>
+      <p class="ts-small" style="margin-top: var(--s-4); max-width: 64ch;">Hero copy fills 8 of 12 columns. Service cards are three at 4 columns each. Body prose holds to 6–7 columns for a 65-character measure.</p>
+    </div>
+  </section>
+
+  <!-- 05 — COMPONENTS -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Components</h2>
+    </div>
+
+    <div class="comp-grid">
+
+      <div class="comp">
+        <span class="ctitle">Buttons</span>
+        <div style="display:flex; flex-wrap:wrap; gap: var(--s-4); align-items:center;">
+          <a class="btn" href="#">Start a conversation <span class="arrow">→</span></a>
+          <a class="btn ghost" href="#">View portfolio <span class="arrow">→</span></a>
+          <a class="btn link" href="#">Read the essay →</a>
+        </div>
+        <p class="ts-small">Primary: blue pill on dark, warms to yellow on hover. Ghost: outlined white. Link: hairline underline only — for inline use.</p>
+      </div>
+
+      <div class="comp">
+        <span class="ctitle">Service card (arrow notation)</span>
+        <div class="service-card">
+          <span class="lbl">01</span>
+          <h4>Service <span class="arrow">→</span> <span class="accent">Ghostwriting</span></h4>
+          <p>If you have a book idea but are not a writer yourself, I turn your research into a finished manuscript — ready for traditional publishers or self-publishing.</p>
+          <ul class="check-list">
+            <li>Business thought-leadership</li>
+            <li>Long-form fiction</li>
+            <li>One client at a time</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="comp">
+        <span class="ctitle">Pull quote</span>
+        <blockquote class="pull-quote">
+          <p>A human-oriented writer who can massively improve your SEO content as well.</p>
+          <cite>— Diego Gopen, Reality XD</cite>
+        </blockquote>
+      </div>
+
+      <div class="comp">
+        <span class="ctitle">Stats</span>
+        <div style="display:flex; gap: var(--s-7); flex-wrap: wrap;">
+          <div class="stat"><span class="num">20</span><span class="lbl">Years writing</span></div>
+          <div class="stat"><span class="num">90<span class="plus">+</span></span><span class="lbl">Companies</span></div>
+          <div class="stat"><span class="num">120<span class="warm">+</span></span><span class="lbl">Articles ghostwritten</span></div>
+        </div>
+      </div>
+
+      <div class="comp">
+        <span class="ctitle">Tags</span>
+        <div style="display:flex; gap: var(--s-2); flex-wrap:wrap;">
+          <span class="tag">Ghostwriting</span>
+          <span class="tag">B2B content</span>
+          <span class="tag">Thought leadership</span>
+          <span class="tag">White papers</span>
+          <span class="tag">Long-form</span>
+        </div>
+      </div>
+
+      <div class="comp">
+        <span class="ctitle">Section break</span>
+        <hr class="rule-thick" />
+        <hr class="rule-thin" />
+        <div style="display:flex; align-items:center; gap: var(--s-3); color: var(--text-mute);">
+          <hr class="rule-thin" style="flex:1;" />
+          <span style="display:inline-block; width:6px; height:6px; background: var(--warm); border-radius: 50%;"></span>
+          <span style="font-size: var(--t-13);">Section break</span>
+          <span style="display:inline-block; width:6px; height:6px; background: var(--warm); border-radius: 50%;"></span>
+          <hr class="rule-thin" style="flex:1;" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 06 — INVERTED PREVIEW -->
+  <section class="inverted">
+    <div class="wrap" style="padding: 0;">
+      <div class="sec-head">
+        <span class="sec-num">06</span>
+        <h2 class="sec-title">Light section variant</h2>
+      </div>
+      <p style="max-width: 60ch; color: var(--ink-soft); font-size: var(--t-20); margin: 0 0 var(--s-8);">Once or twice per page, a pure white section breaks the black. Used for testimonials, a portfolio strip, or a final contact block — to give the eye a place to rest.</p>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--s-7); align-items:center;">
+        <div>
+          <span class="ts-eyebrow" style="color: var(--blue-deep);">A change of voice</span>
+          <h3 style="font-weight: 700; font-size: var(--t-40); letter-spacing: -0.025em; margin: var(--s-3) 0; line-height: 1.05;">
+            Trust is the <span style="color: var(--blue-deep);">foundation</span> of any good story.
+          </h3>
+          <p style="color: var(--ink-soft); max-width: 50ch; margin: 0 0 var(--s-5); font-size: var(--t-18); line-height: 1.6;">
+            Let me build yours.
+          </p>
+          <a href="#" class="btn" style="background: var(--ink); color: var(--light);">Start a conversation <span class="arrow">→</span></a>
+        </div>
+        <blockquote class="pull-quote" style="border-color: var(--blue-deep);">
+          <p style="color: var(--ink);">Rob is a true professional. Smart, great writing skills, and his sense of humor is a bonus to whoever is lucky enough to work with him.</p>
+          <cite style="color: var(--ink-mute);">— Serhat Pala, Confirm BioSciences</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 — PRINCIPLES -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <h2 class="sec-title">Principles</h2>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-7);">
+      <div>
+        <div class="ts-eyebrow">From Pixel Perfect Precision · The core</div>
+        <h3 class="ts-h3" style="margin: var(--s-3) 0;">Restraint over decoration.</h3>
+        <p class="ts-body" style="color: var(--text-soft); max-width: 56ch;">No gradients, no glassmorphism, no decorative icons. The page is black, the type is heavy, and the accents are used once. The space carries the rest.</p>
+      </div>
+      <div>
+        <div class="ts-eyebrow">From Pixel Perfect Precision · Techniques</div>
+        <h3 class="ts-h3" style="margin: var(--s-3) 0;">Edges that hold their lines.</h3>
+        <p class="ts-body" style="color: var(--text-soft); max-width: 56ch;">Everything sits on a 4-point baseline. Hairlines are 1px on the line color. Type tracks tighter as it grows — display copy at −0.045em, body at 0.</p>
+      </div>
+      <div>
+        <div class="ts-eyebrow">From Pixel Perfect Precision · Accessibility</div>
+        <h3 class="ts-h3" style="margin: var(--s-3) 0;">Real contrast, real reading.</h3>
+        <p class="ts-body" style="color: var(--text-soft); max-width: 56ch;">White on near-black clears AAA at body sizes. Blue on near-black clears AA Large. Yellow on near-black clears AAA. Every accent earns its place by passing the contrast check.</p>
+      </div>
+      <div>
+        <div class="ts-eyebrow">From Pixel Perfect Precision · Worst case</div>
+        <h3 class="ts-h3" style="margin: var(--s-3) 0;">Built for real copy.</h3>
+        <p class="ts-body" style="color: var(--text-soft); max-width: 56ch;">Headlines tested at twice their length. Testimonials with three-line names. Service descriptions tested with both terse and long copy. Nothing is sized for the demo.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="row">
+      <div class="signoff">Rob Swystun<span class="dot">.</span></div>
+      <span>Design system · v 0.4 · End of document</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

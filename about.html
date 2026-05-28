@@ -11,6 +11,51 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Rob portrait — about masthead, centerpiece */
+    .masthead-with-portrait {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: var(--s-8);
+      align-items: end;
+    }
+    .rob-about {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1002 / 1306;
+      max-width: 480px;
+      margin-left: auto;
+      margin-bottom: calc(-1 * var(--s-9));   /* let him bleed past masthead bottom padding */
+    }
+    .rob-about picture, .rob-about img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 24px 60px rgba(0,0,0,0.65));
+    }
+    .rob-about__tag {
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-family: var(--mono);
+      font-size: var(--t-12);
+      color: var(--text-mute);
+      line-height: 1.4;
+    }
+    .rob-about__tag .num {
+      color: var(--blue);
+      letter-spacing: 0;
+    }
+    .rob-about__tag strong { color: var(--text); font-weight: 600; }
+    @media (max-width: 900px) {
+      .masthead-with-portrait { grid-template-columns: 1fr; gap: var(--s-7); }
+      .rob-about { max-width: 320px; margin: 0; margin-bottom: 0; }
+    }
+  </style>
 </head>
 <body data-screen-label="02 About">
   <a class="skip" href="#main">Skip to text</a>
@@ -34,26 +79,31 @@
     <section class="masthead" data-screen-label="About masthead">
       <div class="wrap">
 
-        <div class="masthead__meta">
-          <span><a href="index.html" style="color: var(--text-mute); border-bottom: 1px solid var(--line);">Home</a> &nbsp;/&nbsp; About</span>
-          <span class="accent">A short biography</span>
-          <span>Winnipeg, MB</span>
-        </div>
+        <div class="masthead-with-portrait">
+          <div>
+            <h1>
+              Twenty years. Ninety companies. One <span class="blue">voice</span>.
+            </h1>
 
-        <h1>
-          Twenty years. Ninety companies. One <span class="blue">voice</span>.
-        </h1>
+            <p class="masthead__dek">
+              A published fiction author, book ghostwriter, and B2B content marketer
+              working alone, by hand, from Winnipeg. Twenty years in. Still writing
+              every word himself.
+            </p>
 
-        <p class="masthead__dek">
-          A published fiction author, book ghostwriter, and B2B content marketer
-          working alone, by hand, from Winnipeg. Twenty years in. Still writing
-          every word himself.
-        </p>
+            <div class="masthead__post-meta">
+              <span><strong>Practice founded</strong> Aug. 2010</span>
+              <span><strong>First by-line</strong> 2005</span>
+              <span><strong>First ghosted book</strong> 2014</span>
+            </div>
+          </div>
 
-        <div class="masthead__post-meta">
-          <span><strong>Practice founded</strong> Aug. 2010</span>
-          <span><strong>First by-line</strong> 2005</span>
-          <span><strong>First ghosted book</strong> 2014</span>
+          <figure class="rob-about">
+            <picture>
+              <source srcset="assets/rob-portrait.avif" type="image/avif" />
+              <img src="assets/rob-portrait.png" alt="Rob Swystun, ghostwriter and content marketer, gesturing toward the headline" />
+            </picture>
+          </figure>
         </div>
       </div>
     </section>
@@ -68,7 +118,6 @@
 
         <div class="grid">
           <div class="col-1-7">
-            <p class="eyebrow">¶ 1 of 5 · On entering the trade</p>
             <p style="font-size: var(--t-20); line-height: 1.55; color: var(--text);">
               I've been writing professionally since 2005, when I sold my first piece
               of journalism while still figuring out what professional writing even
@@ -89,7 +138,6 @@
 
         <div class="grid mt-5">
           <div class="col-1-7">
-            <p class="eyebrow">¶ 2 of 5 · Ghostwriting</p>
             <h3 class="h-3" style="margin-bottom: var(--s-3);">The ghostwriting practice.</h3>
             <p>
               I've been ghostwriting books and long-form thought-leadership for thirteen
@@ -110,7 +158,6 @@
 
         <div class="grid mt-5">
           <div class="col-1-7">
-            <p class="eyebrow">¶ 3 of 5 · B2B writing</p>
             <h3 class="h-3" style="margin-bottom: var(--s-3);">The B2B content marketing practice.</h3>
             <p>
               On the marketing side, I've written for 90+ companies — articles, blogs,
@@ -130,7 +177,6 @@
 
         <div class="grid mt-5">
           <div class="col-1-7">
-            <p class="eyebrow">¶ 4 of 5 · The promise</p>
             <h3 class="h-3" style="margin-bottom: var(--s-3);">The promise I won't bend.</h3>
             <p>
               Every word that leaves my desk is written by a human — by me. I don't use
@@ -150,7 +196,6 @@
 
         <div class="grid mt-5">
           <div class="col-1-7">
-            <p class="eyebrow">¶ 5 of 5 · Sincerely</p>
             <p style="font-family: var(--sans); font-weight: 800; font-size: clamp(40px, 6vw, 72px); line-height: 1; color: var(--blue); letter-spacing: -0.035em; margin: var(--s-3) 0; max-width: none;">
               Rob Swystun<span style="color: var(--warm);">.</span>
             </p>
@@ -167,15 +212,6 @@
         </div>
       </div>
     </section>
-
-    <!-- section break -->
-    <div class="wrap">
-      <div class="section-break" role="separator">
-        <span class="section-break__dot" aria-hidden="true"></span>
-        <span class="section-break__label">A short timeline</span>
-        <span class="section-break__dot" aria-hidden="true"></span>
-      </div>
-    </div>
 
     <!-- ═══════ 02 / TIMELINE ══════════════════════════════════ -->
     <section class="section--no-top section--alt" data-screen-label="Timeline">
@@ -337,7 +373,6 @@
 
         <div class="grid">
           <div class="col-1-8">
-            <p class="eyebrow">Ready when you are</p>
 
             <h2 class="h-display" style="margin-bottom: var(--s-7);">
               Let's write something that sounds like <span class="warm">you</span>.

@@ -11,6 +11,38 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Rob portrait — home, section 01 */
+    .rob-home {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1002 / 1306;
+      max-width: 320px;
+      margin-left: auto;
+    }
+    .rob-home picture, .rob-home img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 12px 30px rgba(0,0,0,0.5));
+    }
+    .rob-home__caption {
+      position: absolute;
+      left: 0;
+      bottom: 8px;
+      font-family: var(--mono);
+      font-size: var(--t-12);
+      color: var(--blue);
+      letter-spacing: 0;
+      max-width: 12ch;
+      line-height: 1.4;
+    }
+    .rob-home__caption strong { color: var(--text); font-weight: 600; display: block; }
+    @media (max-width: 900px) {
+      .rob-home { max-width: 260px; margin: var(--s-5) 0 0; }
+    }
+  </style>
 </head>
 <body data-screen-label="01 Home">
   <a class="skip" href="#main">Skip to text</a>
@@ -34,12 +66,6 @@
     <!-- ═══════ MASTHEAD ═══════════════════════════════════════ -->
     <section class="masthead" data-screen-label="Masthead">
       <div class="wrap">
-
-        <div class="masthead__meta">
-          <span>A small writing practice · Winnipeg, MB</span>
-          <span class="accent">Currently accepting Q3 / Q4 work</span>
-          <span>Established Aug. 2010</span>
-        </div>
 
         <h1>
           Words built to <span class="blue">last</span>, voices built to <span class="warm">carry</span>.
@@ -99,8 +125,6 @@
 
         <div class="grid">
           <div class="col-1-7">
-            <p class="eyebrow">Why work with me</p>
-
             <p style="font-size: var(--t-20); line-height: 1.55; color: var(--text);">
               I've been writing for businesses and authors since 2005, and ghostwriting
               full-length books since 2013. I work alone. No agency overhead, no junior
@@ -124,25 +148,16 @@
           </div>
 
           <aside class="col-9-12">
-            <div class="marginalia">
-              <span class="num">Author's note</span>
-              For the longer version of this <em>—</em>
-              <a href="about.html">see the About page</a>, where there's a short
-              timeline and the <a href="about.html#memberships">register of professional memberships</a>.
-            </div>
+            <figure class="rob-home">
+              <picture>
+                <source srcset="assets/rob-portrait.avif" type="image/avif" />
+                <img src="assets/rob-portrait.png" alt="Rob Swystun, ghostwriter and B2B content marketer, gesturing toward the reader" />
+              </picture>
+            </figure>
           </aside>
         </div>
       </div>
     </section>
-
-    <!-- section break -->
-    <div class="wrap">
-      <div class="section-break" role="separator" aria-label="Section break">
-        <span class="section-break__dot" aria-hidden="true"></span>
-        <span class="section-break__label">Two practices</span>
-        <span class="section-break__dot" aria-hidden="true"></span>
-      </div>
-    </div>
 
     <!-- ═══════ 02 / SERVICES ══════════════════════════════════ -->
     <section class="section--no-top" id="services" data-screen-label="Services">
@@ -270,8 +285,6 @@
 
         <div class="grid">
           <div class="col-1-8">
-            <p class="eyebrow">On the matter of artificial intelligence</p>
-
             <h2 class="h-display" style="margin-bottom: var(--s-7);">
               Every word on this site, and in your project, composed by a <span class="blue">human</span>.
             </h2>
@@ -318,7 +331,6 @@
 
         <div class="grid">
           <div class="col-1-8">
-            <p class="eyebrow">By electronic mail</p>
             <a class="btn link" style="font-size: clamp(28px, 4.5vw, 56px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; padding-bottom: 6px;" href="mailto:contact@robswystun.com">contact@robswystun.com</a>
 
             <ol class="cat-list mt-4">
